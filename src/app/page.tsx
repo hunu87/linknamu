@@ -13,12 +13,12 @@ export default async function Home() {
   const hasDb = Boolean(process.env.MONGODB_URI);
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col px-4 py-16 sm:py-20">
+    <main className="mx-auto flex min-h-screen w-full max-w-[26rem] flex-col px-6 pb-16 pt-20 sm:pt-24">
       <ThemeToggle />
 
       <ProfileHeader name={profile.name} bio={profile.bio} image={profile.image} />
 
-      <ul className="mt-10 flex flex-col gap-4">
+      <ul className="mt-12 flex flex-col gap-3.5">
         {profile.links.map((link) => (
           <li key={link.id}>
             <LinkCard link={link} initialCount={hasDb ? (counts[link.id] ?? 0) : undefined} />

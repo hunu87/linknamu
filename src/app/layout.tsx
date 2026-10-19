@@ -2,10 +2,12 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+// 한글 가독성이 좋은 Pretendard 가변 폰트를 직접 서빙합니다.
+const pretendard = localFont({
+  src: "../../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  weight: "45 920",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -16,6 +18,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fff7ec" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1714" },
+  ],
 };
 
 // 첫 렌더 전에 저장된 테마(없으면 시스템 설정)를 적용해 깜빡임을 막습니다.
@@ -31,7 +37,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${geistSans.variable} antialiased`}>{children}</body>
+      <body className={`${pretendard.variable} antialiased`}>{children}</body>
     </html>
   );
 }

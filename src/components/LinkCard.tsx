@@ -34,11 +34,11 @@ export default function LinkCard({ link, initialCount }: Props) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="flex w-full items-center justify-between gap-3 rounded-2xl border border-neutral-200 bg-white px-5 py-4 font-medium shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 dark:border-neutral-700 dark:bg-neutral-800 dark:hover:bg-neutral-700"
+      className="relative flex w-full items-center justify-center rounded-[1.25rem] border border-white/70 bg-white/45 px-14 py-[1.125rem] text-[0.9375rem] font-semibold shadow-[0_8px_24px_-12px_rgba(160,90,40,0.25)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-px hover:bg-white/60 hover:shadow-[0_12px_28px_-12px_rgba(160,90,40,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300/70 active:translate-y-0 dark:border-white/10 dark:bg-white/[0.06] dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.5)] dark:hover:bg-white/10"
     >
       <span className="truncate">{link.title}</span>
       {count !== undefined && (
-        <span className="shrink-0 text-xs text-neutral-500 dark:text-neutral-400">
+        <span className="absolute right-5 text-xs font-medium tabular-nums text-stone-500/80 dark:text-stone-400/80">
           {count.toLocaleString()}회
         </span>
       )}

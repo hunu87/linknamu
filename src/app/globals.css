@@ -3,6 +3,33 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100;
-  font-family: var(--font-geist-sans), "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  @apply min-h-screen text-stone-800 dark:text-stone-100;
+  background-color: #fff7ec;
+  font-family: var(--font-pretendard), -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+:root.dark body {
+  background-color: #1c1714;
+}
+
+/* 크림 → 연한 살구색 그라데이션. 스크롤해도 배경이 고정되도록 별도 레이어로 깔고,
+   은은한 빛 번짐을 더해 글래스 카드의 블러가 드러나게 합니다. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 15% 10%, rgba(255, 255, 255, 0.9), transparent 70%),
+    radial-gradient(50% 35% at 90% 55%, rgba(255, 196, 160, 0.45), transparent 70%),
+    linear-gradient(170deg, #fff8ee 0%, #fdeedd 45%, #fbd9c0 100%);
+}
+
+:root.dark body::before {
+  background:
+    radial-gradient(60% 40% at 15% 10%, rgba(255, 170, 120, 0.12), transparent 70%),
+    radial-gradient(50% 35% at 90% 60%, rgba(255, 140, 90, 0.1), transparent 70%),
+    linear-gradient(170deg, #1f1915 0%, #241b16 50%, #2c1f18 100%);
 }
