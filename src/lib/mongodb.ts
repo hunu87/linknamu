@@ -11,7 +11,11 @@ const globalForMongo = globalThis as unknown as {
 function getClientPromise(): Promise<MongoClient> | null {
   if (!uri) return null;
   if (!globalForMongo._mongoClientPromise) {
-    globalForMongo._mongoClientPromise = new MongoClient(uri).connect();
+    globalForMongo._mongoClientPromise = new MongoClient(uri).connect().catch((error) => {
+      // 연결에 실패하면 캐시를 비워 다음 요청에서 다시 연결을 시도합니다.
+      globalForMongo._mongoClientPromise = undefined;
+      throw error;
+    });
   }
   return globalForMongo._mongoClientPromise;
 }
